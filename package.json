@@ -5,8 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "test:unit": "jest --watchAll",
+    "lint": "vue-cli-service lint",
+    "server": "node server.js",
+    "start": "concurrently --kill-others \"yarn serve\" \"yarn server\""
   },
   "dependencies": {
     "core-js": "^3.6.5",
