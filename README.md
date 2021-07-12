@@ -1,5 +1,5 @@
 # single-shop
-
+Vue SPA to display mobile phone list
 ## Project setup
 ```
 yarn install
@@ -8,6 +8,16 @@ yarn install
 ### Compiles and hot-reloads for development
 ```
 yarn serve
+```
+
+### Runs node server for development
+```
+yarn server
+```
+
+### Compiles and runs node server for development
+```
+yarn start
 ```
 
 ### Compiles and minifies for production
