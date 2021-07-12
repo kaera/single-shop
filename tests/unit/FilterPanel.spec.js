@@ -21,10 +21,10 @@ describe("FilterPanel.vue", () => {
     });
     expect(wrapper.html()).toContain("5G");
     wrapper.find("select").trigger("click");
-    expect(wrapper.html()).toContain("Yes (1)");
+    expect(wrapper.findAll("select")[0].text()).toContain("Yes (1)");
   });
   it("displays Brand placeholder and selected option onClick ", () => {
-    const brandFilter = () => [{ label: "Iphone", qty: 1 }];
+    const brandFilter = () => [{ label: "Apple", qty: 1 }];
     const wrapper = mount(FilterPanel, {
       global: {
         plugins: [createTestStore({ getters: { brandFilter } })],
@@ -32,6 +32,6 @@ describe("FilterPanel.vue", () => {
     });
     expect(wrapper.html()).toContain("Brand");
     wrapper.find("select").trigger("click");
-    expect(wrapper.html()).toContain("Iphone (1)");
+    expect(wrapper.findAll("select")[1].text()).toContain("Apple (1)");
   });
 });

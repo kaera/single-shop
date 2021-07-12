@@ -13,7 +13,7 @@ export function createTestStore(params) {
     },
     actions: params?.actions || {
       getPhoneList: () => {
-        return [{ manufacturer: "Iphone", name: "Test name", has_5g: true }];
+        return [{ manufacturer: "Apple", model: "Test model", has_5g: true }];
       },
     },
   });

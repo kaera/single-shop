@@ -1,14 +1,19 @@
 <template>
+  <Header />
   <PhoneFeed />
+  <Footer />
 </template>
 
 <script>
 import PhoneFeed from "./components/PhoneFeed.vue";
-
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 export default {
   name: "App",
   components: {
     PhoneFeed,
+    Header,
+    Footer,
   },
 };
 </script>
