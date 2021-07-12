@@ -32,38 +32,41 @@
 </template>
 
 <script>
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
+
 export default {
   name: "FilterPanel",
+  setup() {
+    const store = useStore();
+    let selectedNetwork = ref("");
+    let selectedBrand = ref("");
 
-  computed: {
-    networkFilter() {
-      return this.$store.getters.networkFilter;
-    },
-    brandFilter() {
-      return this.$store.getters.brandFilter;
-    },
-  },
-  data() {
-    return {
-      selectedNetwork: "",
-      selectedBrand: "",
+    const networkFilter = computed(() => store.getters.networkFilter);
+    const brandFilter = computed(() => store.getters.brandFilter);
+
+    const onNetworkChange = () => {
+      store.dispatch("setNetworkFilter", selectedNetwork.value);
+      store.dispatch("filterByNetwork");
     };
-  },
-
-  methods: {
-    onNetworkChange() {
-      this.$store.dispatch("setNetworkFilter", this.selectedNetwork);
-      this.$store.dispatch("filterByNetwork");
-    },
-    onBrandChange() {
-      this.$store.dispatch("setBrandFilter", this.selectedBrand);
-      this.$store.dispatch("filterByBrand");
-    },
-    onClick() {
-      this.selectedNetwork = "";
-      this.selectedBrand = "";
-      this.$store.dispatch("resetFilters");
-    },
+    const onBrandChange = () => {
+      store.dispatch("setBrandFilter", selectedBrand.value);
+      store.dispatch("filterByBrand");
+    };
+    const onClick = () => {
+      selectedNetwork.value = "";
+      selectedBrand.value = "";
+      store.dispatch("resetFilters");
+    };
+    return {
+      networkFilter,
+      brandFilter,
+      selectedBrand,
+      selectedNetwork,
+      onNetworkChange,
+      onBrandChange,
+      onClick,
+    };
   },
 };
 </script>

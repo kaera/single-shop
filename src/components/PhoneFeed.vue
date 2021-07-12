@@ -10,7 +10,8 @@
 <script>
 import Phone from "./Phone";
 import FilterPanel from "./FilterPanel";
-import { mapState } from "vuex";
+import { computed, onMounted } from "vue";
+import { useStore } from "vuex";
 
 export default {
   name: "PhoneFeed",
@@ -19,11 +20,14 @@ export default {
     FilterPanel,
   },
 
-  computed: mapState({
-    phones: (state) => state.phoneList,
-  }),
-  mounted() {
-    this.$store.dispatch("getPhoneList");
+  setup() {
+    const store = useStore();
+    const phones = computed(() => store.state.phoneList);
+    onMounted(() => store.dispatch("getPhoneList"));
+
+    return {
+      phones,
+    };
   },
 };
 </script>
