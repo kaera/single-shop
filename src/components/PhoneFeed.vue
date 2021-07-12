@@ -1,4 +1,5 @@
 <template>
+  <FilterPanel />
   <div class="grid-main-container">
     <div v-for="phone in phones" :key="phone.id">
       <Phone :phone="phone" />
@@ -8,12 +9,14 @@
 
 <script>
 import Phone from "./Phone";
+import FilterPanel from "./FilterPanel";
 import { mapState } from "vuex";
 
 export default {
   name: "PhoneFeed",
   components: {
     Phone,
+    FilterPanel,
   },
 
   computed: mapState({
